@@ -1,8 +1,5 @@
-import {imageListClasses} from "@mui/material";
-import axios from "axios";
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {alertError} from "../../utils/Alerts/Alert";
 import usePosition from "../../utils/hooks/usePosition";
 import {getWeather} from "../../redux/thunks/getWeather";
 import style from './style.module.css'
@@ -16,10 +13,10 @@ const WeatherInfo = () => {
     const latitude: number = position.position.latitude;
     const longitude: number = position.position.longitude
     const dispatch: any = useDispatch()
-    const weather: any = useSelector((state: any) => state.state.data.data)
+    const weather: {current ?: any, location ?: any} = useSelector((state: {state: {data: {data:{}}}}) => state.state.data.data)
     const date: any = new Date();
     const day: number = date.getDate()
-    const montch: number = date.getMonth()
+    const month: number = date.getMonth()
     const year: number = date.getFullYear()
     const weatherInfoArray = [
         {title: 'Влажность', value: `${weather?.current.humidity}%`},
@@ -34,17 +31,17 @@ const WeatherInfo = () => {
             const cords = `${latitude} ${longitude}`
             dispatch(getWeather(cords))
         }
-    }, [latitude, longitude]);
+    }, [latitude, longitude, dispatch]);
 
     return (
         <div className={style.weatherInfoCard}>
             <div className={style.weatherInfoCardHeader}>
-                <p>{weather?.location.country} <a rel={'noopener'} target={'_blank'} href={`https://www.google.ru/maps/place/${weather?.location.name}`}>{weather?.location.name}</a></p>
+                <p>{weather?.location.country} {weather?.location.name}</p>
                 <img src={geoIcon} alt=""/>
             </div>
             <div className={style.weatherCardMain}>
                 <div className={style.dateInfo}>
-                    <p>{day} {montchs[montch]} {year}</p>
+                    <p>{day} {montchs[month]} {year}</p>
                 </div>
                 <></>
                 <div className={style.tempInfo}>

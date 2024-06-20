@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCity } from "../../redux/Slices/CitySlice";
 import { getWeather } from "../../redux/thunks/getWeather";
 import usePosition from "../../utils/hooks/usePosition";
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import style from './style.module.css'
 import searchIcon from '../../assets/icon _search_.svg'
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 const Search = () => {
     const dispatch: any = useDispatch();
-    const city = useSelector((state: any) => state.state.city.city)
-    const position = usePosition()
+    const city: string = useSelector((state: {state: {city: {city: string}}}) => state.state.city.city)
+    const position: {position: {latitude: number, longitude: number}} = usePosition()
     const latitude: number = position.position.latitude;
     const longitude: number = position.position.longitude
     const cords = `${latitude} ${longitude}`
@@ -18,7 +18,7 @@ const Search = () => {
     return (
         <div className={style.searchParents}>
             <form
-                onSubmit={async (e) => {
+                onSubmit={async (e): Promise<void> => {
                     e.preventDefault();
                     dispatch(getWeather(city))
                 }}
