@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Header from "../../modules/Header/Header";
 import Search from "../../modules/Search/Search";
 import {useDispatch, useSelector} from "react-redux";
 import WeatherInfo from "../../modules/WeatherInfo/WeatherInfo";
@@ -11,6 +12,7 @@ const Main = () => {
     
     return (
         <>
+            <Header />
             <Search />
             <WeatherInfo />
         </>

@@ -2,7 +2,9 @@
 
 .weatherInfoCard{
     width: 60%;
-    height: 380px;
+    height: max-content;
+    padding: 20px;
+    /*height: 380px;*/
     background: linear-gradient(147deg, #ad36cb 19.27%, #333 68.75%);
     border-radius: 32px;
     margin: 70px auto;
@@ -15,7 +17,7 @@
     display: flex;
     justify-content: left;
     gap: 5px;
-    margin-left: 20px;
+    margin: -20px auto auto 20px;
 }
 
 .weatherInfoCardHeader a{

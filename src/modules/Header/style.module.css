@@ -1,0 +1,13 @@
+.header{
+    padding-left: 100px;
+    color: white;
+    border-bottom: 1px solid #333333;
+
+}
+
+@media (max-width: 680px) {
+    .header {
+        text-align: center;
+        padding: 0;
+    }
+}
